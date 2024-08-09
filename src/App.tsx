@@ -1,46 +1,19 @@
-import "./App.css";
+//useEffect로 getPosts를 실행, useEffect는 웹 실행할 때 바로 실행되기 때문
+//useState와 useEffect를 사용하지 않기 위해 react-query를 사용
 
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import styled, { CSSProperties } from "styled-components";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React from "react";
 
-import ReactLogo from "./assets/react.svg?react";
+import HomePage from "./pages/page";
 
-const ReadTheDocs = styled.p<{
-  $color?: CSSProperties["color"];
-}>`
-  color: ${({ $color }) => $color ?? "red"};
-`;
+const queryClient = new QueryClient();
 
-function App() {
-  const [count, setCount] = useState(0);
-  const { t } = useTranslation("main");
-
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-          <img src="/src/assets/react.svg" className="logo" alt="Vite logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <ReadTheDocs $color={"blue"}>
-        {t("title")}
-        <ReactLogo width={16} height={16} />
-      </ReadTheDocs>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <HomePage />
+    </QueryClientProvider>
   );
-}
+};
 
 export default App;

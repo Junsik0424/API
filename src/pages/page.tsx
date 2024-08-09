@@ -43,8 +43,11 @@ const BodyDiv = styled.div`
 
 const HomePage = () => {
   const { data, isLoading, refetch } = useQuery({
-    queryKey: ["getAllPosts"], // queryKey가 같으면 느리게 캐싱함.
-    queryFn: getAllPosts,
+    //useQuery 훅을 이용함, useQuery는 "데이터 페칭, 캐싱, 상태 관리, 자동 갱신:을 함
+    //useQuery에는 "isLoading, isError, data, error, isFetching, refetch"과 같이 다양한 상태를 제공함
+    queryKey: ["getAllPosts"], // query: 데이터를 서버에서 가져오는 요청, queryKey를 이용해 같은 요청(queryKey가 같음)이 들어오면 느리게 캐싱함
+    //캐싱: 가져온 데이터를 캐시에 저장해, 동일한 query에 대해 다시 요청할 때 네트워크 요청을 줄이는 것
+    queryFn: getAllPosts, //데이터를 가져오기 위한 함수, 서버에서 데이터를 비동기로 가져오는 역할
   });
 
   return (

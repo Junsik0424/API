@@ -40,7 +40,7 @@ const CreatePost = () => {
       <h1>새 게시물 생성하기</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <text>User ID:</text>
+          <p>User ID:</p>
           <input
             type="number"
             value={userId}
@@ -49,7 +49,7 @@ const CreatePost = () => {
           />
         </div>
         <div>
-          <text>제목:</text>
+          <p>제목:</p>
           <input
             type="text"
             value={title}
@@ -58,7 +58,7 @@ const CreatePost = () => {
           />
         </div>
         <div>
-          <text>내용:</text>
+          <p>내용:</p>
           <textarea
             value={body}
             onChange={(e) => setBody(e.target.value)}

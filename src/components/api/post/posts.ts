@@ -21,3 +21,15 @@ export const getAPost = async (postId: string) => {
 
   return response.data;
 };
+
+interface PostType {
+  id: number;
+  title: string;
+  body: string;
+  userId: number;
+}
+
+export const createPost = async (newPost: Omit<PostType, "id">) => {
+  const response = await api.post<PostType>("/posts", newPost);
+  return response.data;
+};

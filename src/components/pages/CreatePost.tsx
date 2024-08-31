@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { createPost } from "src/components/api/put/posting";
+import { createPost } from "src/components/api/post/posts";
 import styled from "styled-components";
 
 const EntireDiv = styled.div`
+  background-color: white;
   height: 100vh;
   width: 100vw;
 `;

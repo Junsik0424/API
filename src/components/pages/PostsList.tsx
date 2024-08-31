@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { getAllPosts } from "src/components/api/post/posts";
 import styled from "styled-components";
 
-const EntireDiv = styled.div<{ isChangeColor: boolean }>`
-  background: ${(props) => (props.isChangeColor ? `pink` : `white`)};
+const EntireDiv = styled.div<{ $isChangeColor: boolean }>`
+  background: ${(props) => (props.$isChangeColor ? `pink` : `white`)};
 `;
 
 const HeaderDiv = styled.div`
@@ -124,7 +124,7 @@ const PostsList = () => {
     );
 
   return (
-    <EntireDiv isChangeColor={isChangeColor}>
+    <EntireDiv $isChangeColor={isChangeColor}>
       <HeaderDiv>
         <StyledDiv>
           <TitleDiv>게시물</TitleDiv>

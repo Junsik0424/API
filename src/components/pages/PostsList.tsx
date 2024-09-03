@@ -1,15 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllPosts } from "src/components/api/post/posts";
 import styled from "styled-components";
 
-const EntireDiv = styled.div`
-  height: 100vh;
-  width: 90vw;
+const EntireDiv = styled.div<{ $isChangeColor: boolean }>`
+  background: ${(props) => (props.$isChangeColor ? `pink` : `white`)};
 `;
 
 const HeaderDiv = styled.div`
   padding: 10px 10px 10px 10px;
+`;
+
+const ChangeColorBt = styled.button`
+  width: 100px;
+  height: 50px;
 `;
 
 const TitleDiv = styled.div`
@@ -21,6 +26,7 @@ const TitleDiv = styled.div`
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
 `;
 
@@ -98,6 +104,8 @@ interface Post {
 }
 
 const PostsList = () => {
+  const [isChangeColor, setIsChangeColor] = useState<boolean>(false);
+
   const {
     data: posts = [],
     isLoading,
@@ -116,10 +124,13 @@ const PostsList = () => {
     );
 
   return (
-    <EntireDiv>
+    <EntireDiv $isChangeColor={isChangeColor}>
       <HeaderDiv>
         <StyledDiv>
           <TitleDiv>게시물</TitleDiv>
+          <ChangeColorBt
+            onClick={() => setIsChangeColor(isChangeColor ? false : true)}
+          />
           <StyledCreateLink to={`/createpost`}>게시물 생성</StyledCreateLink>
         </StyledDiv>
       </HeaderDiv>
